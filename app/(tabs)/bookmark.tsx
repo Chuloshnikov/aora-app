@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const AuthLayout = () => {
+const Bookmark = () => {
   return (
     <View>
-      <Text>AuthLayout</Text>
+      <Text>bookmark</Text>
     </View>
   )
 }
 
-export default AuthLayout;
+export default Bookmark;
