@@ -8,7 +8,7 @@ interface FormFieldProps extends TextInputProps {
   value: string;
   placeholder: string;
   handleChangeText: (text: string) => void;
-  otherStyles?: object;
+  otherStyles?: string;
 }
 
 const FormField: React.FC<FormFieldProps> = ({
