@@ -7,6 +7,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { images } from '../constants'
 import CustomButton from '@/components/CustomButton';
 
+
+{/*com.jsm.mchaora*/}
+
 export default function App() {
   return (
     <SafeAreaView className='bg-primary h-full'>
