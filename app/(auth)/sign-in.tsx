@@ -37,6 +37,7 @@ const SignIn = () => {
                 })}
                 otherStyles="mt-7"
                 keyboardType="email-address"
+                placeholder='type a email...'
                 />
                 <FormField
                 title="Password"
@@ -46,6 +47,7 @@ const SignIn = () => {
                   password: e
                 })}
                 otherStyles="mt-7"
+                placeholder='type a password...'
                 />
                 <CustomButton
                 title="Sign In"

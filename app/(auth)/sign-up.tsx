@@ -37,6 +37,7 @@ const SignUp = () => {
                   username: e
                 })}
                 otherStyles="mt-10"
+                placeholder='type a username...'
                 />
                 <FormField
                 title="Email"
@@ -47,6 +48,7 @@ const SignUp = () => {
                 })}
                 otherStyles="mt-7"
                 keyboardType="email-address"
+                placeholder='type a email...'
                 />
                 <FormField
                 title="Password"
@@ -56,6 +58,7 @@ const SignUp = () => {
                   password: e
                 })}
                 otherStyles="mt-7"
+                placeholder='type a password...'
                 />
                 <CustomButton
                 title="Sign In"
