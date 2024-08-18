@@ -7,8 +7,11 @@ import { icons } from '@/constants';
 import CustomButton from '@/components/CustomButton';
 import * as DocumentPicker from 'expo-document-picker';
 import { router } from 'expo-router';
+import { createVideoPost } from '@/lib/appwrite';
+import { useGlobalContext } from '@/context/GlobalProvider';
 
 const Create = () => {
+  const { user } = useGlobalContext();
   const [uploading, setUploading] = useState(false);
   const [form, setForm] = useState({
     title: '',
@@ -20,7 +23,7 @@ const Create = () => {
 
   const openPicker = async (selectType) => {
     const result = await DocumentPicker.getDocumentAsync({
-      type: selectType === 'image' ? ['image/png', 'image/jpg'] : ['video/mp4', 'video/gif']
+      type: selectType === 'image' ? ['image/png', 'image/jpg', 'image/jpeg'] : ['video/mp4', 'video/gif']
     });
 
     if (!result.canceled) {
@@ -39,7 +42,7 @@ const Create = () => {
   }
 
 
-  const submit = () => {
+  const submit = async () => {
     if(!form.prompt || !form.title || !form.video) {
       return Alert.alert('Please fill in all the fields');
     }
@@ -47,7 +50,10 @@ const Create = () => {
     setUploading(true);
 
     try {
-
+      await createVideoPost({
+        ...form,
+        userId: user.$id
+      })
       Alert.alert('Success', 'Post uploaded successfully');
       router.push('/home');
     } catch (error: any) {
@@ -92,9 +98,7 @@ const Create = () => {
                   <Video
                   source={{ uri: form.video.uri }}
                   className='w-full h-64 rounded-2xl'
-                  useNativeControls
                   resizeMode={ResizeMode.COVER}
-                  isLooping
                   />
                 ) : (
                   <View className='w-full h-40 px-4 bg-black-100 rounded-2xl justify-center items-center'>
