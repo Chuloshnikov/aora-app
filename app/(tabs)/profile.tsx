@@ -1,7 +1,7 @@
 import { View, Text, FlatList, Image, RefreshControl, Alert, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import SearchInput from '../../components/SearchInput';
+import InfoBox from '@/components/InfoBox';
 import EmptyState from '@/components/EmptyState';
 import { getUserPosts } from '../../lib/appwrite';
 
@@ -15,7 +15,9 @@ const Profile = () => {
   const { data: posts, refetch } = useAppwrite(() => getUserPosts(user.$id));
 
 
-
+  const logout = () => {
+    
+  }
 
 
   return (
@@ -44,6 +46,27 @@ const Profile = () => {
                   className='w-[100%] h-[90%] rounded-lg'
                   resizeMode='cover'
                   />
+
+                  <InfoBox
+                  title={user?.name}
+                  containerStyles="mt-5"
+                  titleStyles="text-lg"
+                  />
+
+                  <View className='mt-5 flex-row'>
+                    <InfoBox
+                    title={posts.length || 0}
+                    subTitle="Posts"
+                    containerStyles="mr-10"
+                    titleStyles="text-xl"
+                    />
+                    <InfoBox
+                    title={"1.2k"}
+                    subTitle="Followers"
+                    containerStyles="mt-5"
+                    titleStyles="text-xl"
+                    />
+                  </View>
               </View>
           </View>             
         )}
