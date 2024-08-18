@@ -2,9 +2,26 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { icons } from '@/constants';
 
-const VideoCard = ({ video: { title, thumbnail, video, creator: { username, avatar}} }) => {
+interface VideoCardProps {
+    video?: {
+      title?: string;
+      thumbnail?: string;
+      video?: string;
+      creator?: {
+        username?: string;
+        avatar?: string;
+      };
+    };
+  }
+
+const VideoCard: React.FC<VideoCardProps> = ({ video }) => {
     const [play, setPlay] = useState(false);
 
+
+    const title = video?.title || 'No Title';
+    const thumbnail = video?.thumbnail || 'default-thumbnail-url';
+    const avatar = video?.creator?.avatar || 'default-avatar-url';
+    const username = video?.creator?.username || 'Unknown User';
   return (
     <View className='flex-col items-center px-4 mb-14'>
         <View className='flex-row gap-3 items-start'>
